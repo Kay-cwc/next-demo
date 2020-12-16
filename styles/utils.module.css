@@ -1,0 +1,80 @@
+.backButtonWrapper {
+  text-align: right;
+}
+
+.submitButton {
+  text-align: center;
+  margin: 5px 0px
+}
+
+.foodListXd {
+  padding: 15px
+}
+
+.foodListXd li {
+  list-style: none;
+  box-shadow: 0 0 5px #50505080;
+  border: 1px solid #c2c2c2;
+  border-radius: 5px;
+  margin: 15px 0px;
+  padding: 15px;
+}
+
+.foodListTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0px;
+}
+
+.foodListContent {
+  margin: 5px 0px;
+  font-size: 1rem;
+  min-height: 3rem;
+}
+
+.foodListMeta {
+  font-weight: 100;
+  color: #505050;
+  font-size: 0.8rem;
+  margin: 0px
+}
+
+.foodListTag {
+  color: white;
+  font-size: 0.7rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 5px;
+  background-color: grey;
+}
+
+.foodDetailContainer {
+  box-shadow: 0 0 5px #50505080;
+  border: 1px solid #c2c2c2;
+  min-height: 80vh;
+  max-width: 600px;
+  border-radius: 5px;
+  margin: 15px 15px;
+  padding: 15px;
+}
+
+.foodDetailTag {
+  color: white;
+  font-size: 0.9rem;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin: 10px 3px 0px 3px;
+  background-color: grey;
+}
+
+.createEntryButton {
+  position: fixed;
+  background-color: aqua;
+  bottom: 30px;
+  right: 15px;
+  border-radius: 20px !important;
+}
+
+.foodCreateFormButton {
+  min-width: 100px !important;
+}
