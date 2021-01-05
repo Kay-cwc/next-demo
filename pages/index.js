@@ -4,6 +4,8 @@ import Router from "next/router";
 import styles from '../styles/Home.module.css'
 import api from "../components/api";
 
+import { Button, IconButton } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default class Home extends Component {
   
@@ -11,7 +13,8 @@ export default class Home extends Component {
     super();
     this.state = {
       email: 'fill in your email',
-      password: ''
+      password: '',
+      file: []
     }
   };
   handleSubmit = (event) => {
@@ -33,6 +36,10 @@ export default class Home extends Component {
           console.log(err.response)
         }
       })
+  }
+
+  handleUpload = (e) => {
+    console.log(e.target.value)
   }
 
 
@@ -75,6 +82,24 @@ export default class Home extends Component {
               />
           </form>
         </section>
+
+        {/* <section>
+          <input 
+            accept='/*' 
+            id='contained-button-file'
+            type='file'
+            onChange={(e) => {this.handleUpload(e)}}
+            />
+          <label htmlFor='contained-button-file'>
+            <Button
+              varient='contained'
+              color='primary'
+              component='span'
+            >
+              Upload
+            </Button>
+          </label>
+        </section> */}
 
       </div>
     )

@@ -12,7 +12,8 @@ class wishlist extends Component {
     this.state = {
       start: 0,
       offset: 10,
-      foodList: []
+      foodList: [],
+      detail: {},
     }
   }
 
@@ -36,13 +37,25 @@ class wishlist extends Component {
     }
   }
 
+  clickButtonHandler = (e) => {
+    console.log('click')
+    console.log(e.target.value)
+  }
+
+  getDetail = (e, raceDate, raceNumber) => {
+    e.preventDefault();
+    console.log(raceDate, raceNumber)
+    api.get(`/api/webdata/racecard/filter/?date=${raceDate}&raceNo=${raceNumber}`)
+  }
+
   getFoodList = () => {
-    let header = {
-      Authorization: 'TOKEN ' + localStorage.getItem('LOGBOOK_AUTH_TOKEN')
-    }
-    let pageStart = this.state.start
-    let pageEnd = this.state.start + this.state.offset
-    api.get(`api/food/food/?start=${pageStart}&end=${pageEnd}`, {headers: header})
+    // let header = {
+    //   Authorization: 'TOKEN ' + localStorage.getItem('LOGBOOK_AUTH_TOKEN')
+    // }
+    // let pageStart = this.state.start
+    // let pageEnd = this.state.start + this.state.offset
+    // api.get(`api/food/food/?start=${pageStart}&end=${pageEnd}`, {headers: header})
+    api.get(`/api/webdata/track/filter/?latestDate=true`)
     .then( res => {
       if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
         console.log(res.data.data)
@@ -61,7 +74,7 @@ class wishlist extends Component {
     return (
       <div>
         <ul className={utilStyles.foodListXd}>
-          { this.state.foodList &&
+          {/* { this.state.foodList &&
             this.state.foodList.map(({id, name, link, created_at, review, description}) => {
             let meta_review = ''
             switch (review) {
@@ -90,7 +103,27 @@ class wishlist extends Component {
                 <span className={utilStyles.foodListMeta}>{created_at && created_at.substring(0, 10)}</span>
               </li>
             )
-          })}
+          })} */}
+          {/* {
+            this.state.detail &&
+            this.state.detail.map()
+          } */}
+          {
+            this.state.foodList &&
+            this.state.foodList.map(({id, raceDate, raceNumber}) => {
+              return (
+                <li>
+                  <div>
+                    <Button
+                      key={id}
+                      value={raceNumber}
+                      onClick={(e) => {this.getDetail(e, raceDate, raceNumber)}}
+                    >{raceNumber}</Button>
+                  </div>
+                </li>
+              )
+            })
+          }
         </ul>
         <div className={utilStyles.createEntryWrapper}>
           <Link href='/wishlist/add' >
@@ -108,15 +141,15 @@ class wishlist extends Component {
   }
 }
 
-export async function getStaticProps() {
-  const foodListUrl = rootUrl + 'api/food/food/'
-  const foodList = await fetch(foodListUrl)
-  const foodListData = await foodList.json()
-  return {
-    props: {
-      foodListData
-    }
-  }
-}
+// export async function getStaticProps() {
+//   const foodListUrl = rootUrl + 'api/food/food/'
+//   const foodList = await fetch(foodListUrl)
+//   const foodListData = await foodList.json()
+//   return {
+//     props: {
+//       foodListData
+//     }
+//   }
+// }
 
 export default wishlist;
